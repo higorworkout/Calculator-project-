@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="icon/favicon.icon" type="image/x-icon">
+    <title>Calculadora</title>
+    <style>
+         @font-face {
+             font-family:'Calculator' ;
+             src: url('font/LEDCalculator.ttf') format('opentype');
+             font-weight: bolder;
+             font-style: normal;
+        }
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      p {
+        font-family: 'Calculator';
+        padding-right: 10px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 30pt;
+        font-style: italic;
+      }
+      div#shape {
+        position: absolute;
+        height: 590px;
+        width: 490px;
+        background-color: #595959;
+        
+        border-radius: 35px;
+        top: 50%;
+        left: 50%;
+        margin-top: -300px;
+        margin-left: -250px;
+        padding: 15px;
+        padding-bottom: 40px;
+        
+      }
+       /* Vidro com resultado*/
+        p#result {
+        float: inline-start;
+        height: 80px;
+        width: 410px;
+       
+        margin-left: 27px;
+        margin-top: 32px;
+        border-radius: 15px; 
+        padding-left: 15px;
+        text-align: right;
+        font-size: 70px;
+        background-image: linear-gradient(180deg, rgba(206,223,206,1) 51%, rgba(189,207,189,1) 56%);
+        outline: 4px solid #819580;
+        outline-offset: -6px;
+        border: 2px solid #A6A5A7;
+        
+        
+      } 
+
+       /*Movimentação dos butões para lateral*/
+      table {
+        margin-top: 80px;
+        margin-left: 16px;
+      }
+      .butao {
+        background-color: #EDEDED;
+        width: 100px;
+        height: 73px;
+        border-radius: 15px;
+        font-size: 40px;
+        font-weight: 900;
+        color: #343333;
+        border: #201f1f;
+        cursor: pointer;
+        margin-top: 20px;
+        margin-left: 10px;
+       
+      }
+      .button {
+        background-color: #F2AA52;
+        height: 165px;
+        width: 100px;
+        border-radius: 15px;
+        font-size: 60px;
+        color: #FFF;
+        border: #201f1f;
+        cursor: pointer;
+        margin-top: 20px;
+        margin-left: 10px;
+        
+      }
+      .but {
+        background-color: #EDEDED;
+        height: 73px;
+        width: 210px;
+        border-radius: 15px;
+        font-size: 40px;
+        color: #343333;
+        font-weight: 900;
+        border: #201f1f;
+        cursor: pointer;
+        margin-top: 20px;
+        margin-left: 10px;
+       
+      }
+      .butao:hover {
+        background-color: #aaa5a5;
+      }
+
+      .button:hover {
+        background-color: #e98c1b;
+      }
+
+      .but:hover {
+        background-color: #aaa5a5;
+      }
+      .move {
+        margin-: 50px;
+      }
+
+  
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <div id="shape">
+     <p id="result"></p>
+     
+    
+     <table>
+        <tr class="line">
+            <td><button class="butao" onclick="clean()">C</button></td>
+            <td><button class="butao" onclick="back()"><</button></td>
+            <td><button class="butao" onclick="insert('÷')">÷</button></td>
+            <td><button class="butao" onclick="insert('*')">*</button></td>
+
+        </tr>
+        <tr>
+            <td><button class="butao" onclick="insert('7')">7</button></td>
+            <td><button class="butao" onclick="insert('8')">8</button></td>
+            <td><button class="butao" onclick="insert('9')">9</button></td>
+            <td><button class="butao" onclick="insert('-')">-</button></td>
+
+        </tr>
+        <tr>
+            <td><button class="butao" onclick="insert('4')">4</button></td>
+            <td><button class="butao" onclick="insert('5')">5</button></td>
+            <td><button class="butao" onclick="insert('6')">6</button></td>
+            <td><button class="butao" onclick="insert('+')">+</button></td>
+
+        </tr>
+        <tr>
+            <td><button class="butao" onclick="insert('1')">1</button></td>
+            <td><button class="butao" onclick="insert('2')">2</button></td>
+            <td><button class="butao" onclick="insert('3')">3</button></td>
+            <td rowspan="2"><button class="button" onclick="calc()">=</button></td>
+
+        </tr>
+        <tr>
+            <td colspan="2"><button class="but" onclick="insert('0')">0</button></td>
+            <td><button class="butao" class="dot" onclick="insert('.')">.</button></td>
+        </tr>
+    </table>
+    </div>
+   
+    <script>
+      function insert(num)
+      {
+        var number = window.document.getElementById('result').innerHTML;
+        document.getElementById('result').innerHTML = number + num;
+
+      }
+      function clean() {
+        document.getElementById('result').innerHTML = ""
+      }
+
+      function back() {
+        var number = window.document.getElementById('result').innerHTML;
+      document.getElementById('result').innerHTML = number.substring(0, number.length -1);
+      }
+
+      function calc() {
+        var result = window.document.getElementById('result').innerHTML;
+        if(result){
+          document.getElementById('result').innerHTML = eval(result);
+        }
+        else {
+          document.getElementById('result').innerHTML = "NONE";
+        }
+      }
+    </script>
+</body>
+</html>
